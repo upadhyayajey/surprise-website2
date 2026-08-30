@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Hi Muskii✨</title>
+  <meta name="description" content="A handcrafted personal surprise website filled with memories, letters, and love." />
+
+  <!-- Google Fonts: 'Caveat' for handwritten notes, 'Nunito' for clean soft readable copy -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       BACKGROUND AMBIENT DECORATIONS (Floating canvas & elements)
+       ============================================================ -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       FLOATING AUDIO TOGGLE
+       ============================================================ -->
+  <aside class="audio-widget" aria-label="Audio player">
+    <button id="audio-toggle-btn" class="audio-btn" aria-label="Play background music" title="Click to play music 🎵">
+      <span class="audio-icon" id="audio-icon">🎵</span>
+      <span class="audio-waves" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+    <audio id="bg-audio" loop preload="auto">
+      <source src="assets/music/music.mp3" type="audio/mp3" />
+    </audio>
+  </aside>
+
+  <!-- ============================================================
+       1. OPENING / WELCOME OVERLAY SCREEN
+       ============================================================ -->
+  <section id="welcome-screen" class="welcome-screen" aria-label="Welcome section">
+    <div class="welcome-card glass-card">
+      <div class="character-wrapper" aria-hidden="true">
+        <div class="character panda-wave">
+          <div class="panda-face">
+            <span class="ear ear-left"></span>
+            <span class="ear ear-right"></span>
+            <span class="eye eye-left"><span class="pupil"></span></span>
+            <span class="eye eye-right"><span class="pupil"></span></span>
+            <span class="nose"></span>
+            <span class="mouth"></span>
+            <span class="blush blush-left"></span>
+            <span class="blush blush-right"></span>
+          </div>
+          <div class="panda-paw paw-wave">👋</div>
+        </div>
+      </div>
+
+      <h1 class="welcome-title">HELLO JI , KAISE HO AAP ??... <span class="heart-pulse">❤️</span></h1>
+      <p class="welcome-subtext" id="welcome-subtext">Acha maine na kuch bnaya hai aapke liye , acha lge to like share , send me lots of puccchhhiii....</p>
+
+      <button id="open-surprise-btn" class="cta-btn primary-btn" aria-label="Open your surprise website">
+        Chaloooooooool💌
+      </button>
+
+      <div id="loading-spinner" class="loading-spinner hidden" aria-label="Opening...">
+        <span class="spinner-dot"></span>
+        <span class="spinner-dot"></span>
+        <span class="spinner-dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT (Revealed after clicking "Open surprise")
+       ============================================================ -->
+  <main id="main-content" class="main-content is-hidden" aria-hidden="true">
+
+    <!-- 2. PERSONAL INTRODUCTION -->
+    <section class="section intro-section" id="intro-section" aria-label="Introduction">
+      <div class="container intro-container">
+        <div class="intro-photo-card glass-card">
+          <div class="photo-frame">
+            <img src="assets/photos/profile.jpg" 
+                 alt="Portrait of my favorite person" 
+                 class="hero-img" 
+                 loading="eager"
+                 onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'" />
+            <div class="frame-tag" id="intro-badge">My Favorite Human 🌸</div>
+          </div>
+        </div>
+
+        <div class="intro-text-card glass-card">
+          <div class="tag-pill">✨ For you and only you  🫵</div>
+          <h2 class="handwritten intro-heading" id="intro-heading">To ye n uss ladki ke liye jisko maine apne pyar ke jaal fsa liya hai...</h2>
+          <p class="intro-paragraph" id="intro-p1">
+            I love you baccha , jaanta hu thoda door hu pta na kb mil paunga , pr tum to meri sherni ho n , please roya nhi kro , tumhe to abhi sbse ladna hai mere khatir , kehte hai aurat aadmi ka hathiar banti kya tum meri hathiyar bnogi kya , jb mai akela pdne lgu to bhi mujhse pgar krogi na .....
+          </p>
+          <p class="intro-paragraph" id="intro-p2">
+            Shayd mai express nhi kr pata pr tumhe to aankhe pdhna aata n , fir meri aankhe kyu nhi pdhti , kyu nhi smjh paati ki kya hai aakho me ,ye aasu kyu girte tumhare liye , mai hr raat kyu aata tumhare paas ...hmmmm???boloo ??? 
+          </p>
+          <div class="intro-signature">
+            <span>Tumhara ,</span>
+            <strong class="handwritten sign-name" id="author-signature">Your Favorite Person 🫶🏻</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. INTERACTIVE "DO YOU..." QUESTIONS -->
+    <section class="section question-section" id="question-section" aria-label="Interactive questions">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">👀 Quiz Time</span>
+          <h2 class="section-title">Okay... sachi sachi jwab dena ❤️</h2>
+          <p class="section-desc">There are no wrong answers (well, maybe except one...)</p>
+        </div>
+
+        <div class="question-box glass-card" id="question-box">
+          <div class="question-progress" aria-label="Quiz progress">
+            <span id="question-counter">Question 1 of 8</span>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" id="question-progress-fill" style="width: 12.5%;"></div>
+            </div>
+          </div>
+
+          <div class="question-content">
+            <div class="mascot-emoji" id="question-mascot" aria-hidden="true">🐼</div>
+            <h3 class="question-title" id="question-text">Pyar krti?? 🥺</h3>
+            <p class="question-hint" id="question-hint"></p>
+          </div>
+
+          <div class="answers-container" id="answers-container">
+            <button id="btn-yes" class="answer-btn yes-btn" aria-label="Yes">Yes! 🥹❤️</button>
+            <button id="btn-no" class="answer-btn no-btn" aria-label="No">No 😤</button>
+          </div>
+        </div>
+
+        <!-- Question Celebration Modal -->
+        <div id="quiz-success-banner" class="quiz-banner glass-card hidden" role="alert">
+          <div class="banner-icon">🎉 🥹 🫶🏻</div>
+          <h3 id="quiz-success-title">I KNEW IT!</h3>
+          <p id="quiz-success-msg">Dekha mai to jaanta hi tha , tum naa bol hi nhi skti ...hehe</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. OUR MEMORY BOOK -->
+    <section class="section memory-section" id="memory-section" aria-label="Memory Book">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">📖 Scrapbook</span>
+          <h2 class="section-title">Our Little Book of Memories ❤️</h2>
+          <p class="section-desc">Ye shayd kuch aise moments jo mai chahta ke tum yaad krna jb bhi mujhse ghussa hona.</p>
+        </div>
+
+        <div class="book-wrapper">
+          <div class="book-container glass-card" id="memory-book">
+            <article class="book-page" id="book-page">
+              <div class="page-media">
+                <img id="page-img" 
+                     src="assets/photos/memory1.jpg" 
+                     alt="Chapter memory photo" 
+                     loading="lazy"
+                     onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80'" />
+              </div>
+              <div class="page-content">
+                <div class="page-header">
+                  <span class="page-chapter" id="page-chapter">Chapter 01</span>
+                  <span class="page-date" id="page-date">May 14, 2024</span>
+                </div>
+                <h3 class="page-title handwritten" id="page-title">The First Conversation 🌷</h3>
+                <p class="page-description" id="page-desc">
+                  Tumhe yaad hai jb tum pehli baar school me aai thi ,to maine na bhagwan ji se manga tha ki tumhe kisi bhi tarah meri hi class me la de , and unhone kha tathastu and tum meri hi class me aa gyi , and maine buddhuo ki tarah tumhe facebook pe kaise msg krke request accept ko kha ..hehehe...
+                </p>
+                <div class="page-footer">
+                  <span class="page-number-indicator" id="page-indicator">1 / 5</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="book-controls" aria-label="Book page navigation">
+            <button id="btn-prev-page" class="nav-circle-btn" aria-label="Previous Page" title="Previous page">‹</button>
+            <div class="page-dots" id="page-dots" role="tablist"></div>
+            <button id="btn-next-page" class="nav-circle-btn" aria-label="Next Page" title="Next page">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. "THINGS I LOVE ABOUT YOU" -->
+    <section class="section reasons-section" id="reasons-section" aria-label="Things I love about you">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">✨ Little Reminders</span>
+          <h2 class="section-title">Things I Love About You 🫶🏻</h2>
+          <p class="section-desc">Tap each card to reveal a little secret reason.</p>
+        </div>
+
+        <div class="reasons-grid" id="reasons-grid">
+          <!-- Populated by JavaScript via CONFIG.reasons -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. POETRY SECTION -->
+    <section class="section poetry-section" id="poetry-section" aria-label="Poetry">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">🌙Kuch Kavitayen</span>
+          <h2 class="section-title">Kuch baatey jo shayd keh nhi paya to aasan rashta dikha unhe likh dene ka.... 💌</h2>
+          <p class="section-desc">Kuch kavitaye jo ek dil dusre dil se kehna chahta.. .</p>
+        </div>
+
+        <div class="poetry-slider-wrapper">
+          <div class="poetry-cards-container" id="poetry-container">
+            <!-- Populated by JavaScript via CONFIG.poems -->
+          </div>
+          <div class="poetry-nav-controls">
+            <button id="poem-prev" class="nav-pill-btn" aria-label="Previous poem">← Previous</button>
+            <button id="poem-next" class="nav-pill-btn" aria-label="Next poem">Next →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. VIDEO / MOMENTS SECTION -->
+    <section class="section moments-section" id="moments-section" aria-label="Video moments">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">🎬 Saved Clips</span>
+          <h2 class="section-title">Little Moments in Motion 🐰</h2>
+          <p class="section-desc">Because some smiles deserve to be replayed forever.</p>
+        </div>
+
+        <div class="videos-grid" id="videos-grid">
+          <!-- Populated by JavaScript via CONFIG.videos -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Modal / Lightbox -->
+    <div id="video-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-video-title">
+      <div class="modal-dialog glass-card">
+        <button id="modal-close-btn" class="modal-close" aria-label="Close video player">✕</button>
+        <h3 id="modal-video-title" class="modal-title">Moment</h3>
+        <div class="video-wrapper">
+          <video id="modal-player" controls preload="metadata" playsinline>
+            <source src="" type="video/mp4" />
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. LETTER / SECRET MESSAGE -->
+    <section class="section letter-section" id="letter-section" aria-label="Love letter">
+      <div class="container letter-container">
+        <div class="section-header text-center">
+          <span class="section-badge">💌 Sealed with Love</span>
+          <h2 class="section-title">There's Something I Wanted to Tell You...</h2>
+          <p class="section-desc">Tap the envelope to break the seal and read.</p>
+        </div>
+
+        <div class="envelope-interactive" id="envelope-wrapper">
+          <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the sealed letter">
+            <div class="envelope-flap" id="envelope-flap"></div>
+            <div class="envelope-pocket"></div>
+            <div class="wax-seal" id="wax-seal">❤️</div>
+            <div class="letter-preview">
+              <span class="preview-line"></span>
+              <span class="preview-line short"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unfolded Letter Sheet -->
+        <article class="letter-paper glass-card hidden" id="letter-paper" aria-label="Open letter message">
+          <div class="letter-stamp">🌷 Ek khatt likha hai </div>
+          <div class="letter-body">
+            <h3 class="handwritten letter-salutation" id="letter-salutation">Meri Pyari,</h3>
+            <p id="letter-body-p1">
+              To agr mujhse kisi ne kuch saalo pehle kha hota ke mujhse bhi koi pyar kr skta to mai n bilkul bhi nhi maanta , pr you proved me wrong , tumne n meko btaya ki koi mujhse bhi pyar kr skta , koi mere liye bhi ro skta , mera haath bhi thaam skta ....
+            </p>
+            <p id="letter-body-p2">
+              Thank you for being so patient, funny, sweet, and wonderfully weird with me. I hope this website reminds you how deeply valued and truly loved you are.
+            </p>
+            <div class="letter-closing">
+              <p>Forever your biggest fan,</p>
+              <h4 class="handwritten letter-signature" id="letter-sig-name">Your friend 🫶🏻</h4>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 9. OPTIONAL MESSAGE / COMPLAINT BOX -->
+    <section class="section feedback-section" id="feedback-section" aria-label="Send a message">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">💬 Open Line</span>
+          <h2 class="section-title">Need to tell me something? 👀</h2>
+          <p class="section-desc">Leave a sweet note, an urgent complaint, or an "I miss you".</p>
+        </div>
+
+        <div class="feedback-card glass-card">
+          <form id="contact-form" class="cute-form" novalidate>
+            <div class="form-group">
+              <label for="user-name">Your Name / Nickname 🌸</label>
+              <input type="text" id="user-name" class="form-control" placeholder="e.g. Cutie Pie" required />
+            </div>
+
+            <div class="form-group">
+              <label for="message-mood">What's your vibe right now?  mood</label>
+              <select id="message-mood" class="form-control">
+                <option value="🥺 Missing you terribly">🥺 Missing you terribly</option>
+                <option value="😤 I have a serious cute complaint">😤 I have a serious cute complaint</option>
+                <option value="💕 Feeling super loving & cute">💕 Feeling super loving & cute</option>
+                <option value="🍕 Want to demand food & attention">🍕 Want to demand food & attention</option>
+                <option value="💬 Just wanted to hear your voice">💬 Just wanted to hear your voice</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="user-message">Your message 💌</label>
+              <textarea id="user-message" rows="4" class="form-control" placeholder="Write whatever is on your mind..." required></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" id="btn-send-whatsapp" class="form-btn whatsapp-btn">
+                Send via WhatsApp 📱
+              </button>
+              <button type="button" id="btn-send-email" class="form-btn email-btn">
+                Send via Email ✉️
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. SECRET SURPRISE (Hidden Panda Egg) -->
+    <aside class="secret-easter-egg" aria-label="Secret Easter Egg">
+      <button id="secret-panda-btn" class="easter-egg-btn" title="Peekaboo!" aria-label="Hidden cute panda">
+        🐼
+      </button>
+    </aside>
+
+    <!-- Secret Modal -->
+    <div id="secret-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="secret-title">
+      <div class="modal-dialog glass-card text-center">
+        <div class="secret-mascot">🎉 🐻 💖 🐰 🎉</div>
+        <h3 id="secret-title" class="handwritten">Okay... you found the secret! 🥹❤️</h3>
+        <p class="secret-message" id="secret-custom-msg">
+          You clicked the tiny panda 5 times! That means you get 100 bonus virtual hugs, unlimited coffee coupons, and 1 unconditional date of your choice whenever we see each other! 🌷✨
+        </p>
+        <button id="secret-close-btn" class="cta-btn primary-btn">Claim Hugs 🫶🏻</button>
+      </div>
+    </div>
+
+    <!-- 11. FINAL SECTION & REPLAY -->
+    <footer class="section final-section text-center" id="final-section" aria-label="Ending section">
+      <div class="container final-container">
+        <div class="final-card glass-card">
+          <div class="character-final" aria-hidden="true">
+            <span class="final-emoji">🐻</span>
+            <span class="heart-float">💖</span>
+            <span class="final-emoji">🐼</span>
+          </div>
+
+          <blockquote class="final-quote">
+            <p class="quote-main">"Distance may be a little annoying...</p>
+            <p class="quote-sub">but it doesn't change how special you are to me. ❤️"</p>
+          </blockquote>
+
+          <p class="final-thanks">Thank you for being you. 🫶🏻</p>
+
+          <button id="replay-btn" class="cta-btn secondary-btn" aria-label="Replay the whole surprise experience">
+            Replay the surprise ✨
+          </button>
+
+          <p class="made-with">Crafted with endless love & care just for you 🌸</p>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
